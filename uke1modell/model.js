@@ -2,13 +2,12 @@ const model = {
     inputCreatePoll:
     {
         pollInfo:
-        {
-            pollName: 'Kodetimer uke 1',
-            pollDeadline: '17.10.2020',
-            editMode: false,
-        },
+            {
+                pollName: 'Kodetimer uke 1',
+                pollDeadline: '17.10.2020',
+                editMode: false,
+            },
         questionInputs:
-            [
             {
                 pollQuestion: 'N&aring;r passer det med kodetime?' ,
                 newAlternativeInput: '',
@@ -19,32 +18,19 @@ const model = {
                         'Torsdag 12.15 - 13.15',
                     ],
                 userMayAddAlternatives: true,
-            }, {
-                pollQuestion: 'Hva skal vi lære oss?',
-                newAlternativeInput: '',
-                pollAlternatives:
-                    [
-                        'MVC',
-                        'Funksjonelle funksjoner',
-                        'Objekter',
-                        'Lister med objekter',
-                    ],
-                userMayAddAlternatives: true,
-            }
-        ]
+            },
 
     },
     savedPolls:
     [
         {
-            poll1:
+            pollInfo:
                 {
-                    pollInfo:
-                    {
-                        pollName: 'Kodetimer uke 1',
-                        pollDeadline: '17.10.2020',
-                    },
-                    question1:
+                    pollName: 'Kodetimer uke 1',
+                    pollDeadline: '17.10.2020',
+                },
+            questions:
+                [
                     {
                         pollQuestion: 'N&aring;r passer det med kodetime?',
                         pollAlternatives:
@@ -53,9 +39,8 @@ const model = {
                                 'Onsdag 10.00 - 11.00',
                                 'Torsdag 12.15 - 13.15',
                             ],
-                            userMayAddAlternatives: true,
+                        userMayAddAlternatives: true,
                     },
-                    question2:
                     {
                         pollQuestion: 'Hva skal vi lære oss?',
                         pollAlternatives:
@@ -67,10 +52,10 @@ const model = {
                             ],
                         userMayAddAlternatives: true,
                     },
-                }
-        }
+                ]
+        },
     ]
-
+     
     
 
 };
