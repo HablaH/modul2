@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css.css">
+    <script type="text/javascript" src="controller.js"></script>
+    
+</head>
+<body>
+    <input type="range" min="1" max="20" step="1" oninput="createScaleLabyrinth(parseInt(this.value));updateView()" value="3">
+    <div id="app"></div>
+    <button onclick="createScaleLabyrinth(mazeModel.size);updateView()">randomize</button>
+    
+    
+    <script type="text/javascript">
+        //model
+        var app = document.getElementById('app');
+        var mazeModel = {
+            size: 3,
+            rows: [
+                [
+                    { isHigh: false, isWide: false, isOpen: false },
+                    { isHigh: false, isWide: true, isOpen: false },
+                    { isHigh: false, isWide: false, isOpen: false },
+                    { isHigh: false, isWide: true, isOpen: true },
+                    { isHigh: false, isWide: false, isOpen: false },
+                    { isHigh: false, isWide: true, isOpen: false },
+                    { isHigh: false, isWide: false, isOpen: false },
+                ],
+                [
+                    { isHigh: true, isWide: false, isOpen: false },
+                    { isHigh: true, isWide: true , isOpen: true},
+                    { isHigh: true, isWide: false, isOpen: false },
+                    { isHigh: true, isWide: true , isOpen: true},
+                    { isHigh: true, isWide: false, isOpen: false },
+                    { isHigh: true, isWide: true , isOpen: true},
+                    { isHigh: true, isWide: false, isOpen: false },
+                ],
+                [
+                    { isHigh: false, isWide: false, isOpen: false },
+                    { isHigh: false, isWide: true, isOpen: false },
+                    { isHigh: false, isWide: false, isOpen: false },
+                    { isHigh: false, isWide: true, isOpen: false },
+                    { isHigh: false, isWide: false, isOpen: false },
+                    { isHigh: false, isWide: true, isOpen: false },
+                    { isHigh: false, isWide: false, isOpen: false },
+                ],
+                [
+                    { isHigh: true, isWide: false, isOpen: false },
+                    { isHigh: true, isWide: true, isOpen: true},
+                    { isHigh: true, isWide: false, isOpen: false },
+                    { isHigh: true, isWide: true, isOpen: true },
+                    { isHigh: true, isWide: false, isOpen: false },
+                    { isHigh: true, isWide: true, isOpen: true },
+                    { isHigh: true, isWide: false, isOpen: false },
+                ],
+                [
+                    { isHigh: false, isWide: false, isOpen: false },
+                    { isHigh: false, isWide: true, isOpen: false },
+                    { isHigh: false, isWide: false, isOpen: false },
+                    { isHigh: false, isWide: true, isOpen: false },
+                    { isHigh: false, isWide: false, isOpen: false },
+                    { isHigh: false, isWide: true, isOpen: false },
+                    { isHigh: false, isWide: false, isOpen: false },
+                ],
+                [
+                    { isHigh: true, isWide: false, isOpen: false },
+                    { isHigh: true, isWide: true, isOpen: true},
+                    { isHigh: true, isWide: false, isOpen: false },
+                    { isHigh: true, isWide: true, isOpen: true },
+                    { isHigh: true, isWide: false, isOpen: false },
+                    { isHigh: true, isWide: true, isOpen: true },
+                    { isHigh: true, isWide: false, isOpen: false },
+                ],
+                [
+                    { isHigh: false, isWide: false, isOpen: false },
+                    { isHigh: false, isWide: true, isOpen: false },
+                    { isHigh: false, isWide: false, isOpen: false },
+                    { isHigh: false, isWide: true, isOpen: false },
+                    { isHigh: false, isWide: false, isOpen: false },
+                    { isHigh: false, isWide: true, isOpen: true },
+                    { isHigh: false, isWide: false, isOpen: false },
+                ],
+            ]
+        };
+
+        //view
+
+        updateView();
+        function updateView() {
+            app.innerHTML = `
+            <p>${mazeModel.size}</p>
+            <table>${drawTable()}</table>
+            
+            `;
+        }
+
+        function drawSquare(r, c) {
+        const high = (mazeModel.rows[r][c].isHigh)? 'high':'low';
+        const wide = (mazeModel.rows[r][c].isWide)? 'wide':'small';
+        const open = (mazeModel.rows[r][c].isOpen)? 'noWall':'wall';
+        let square = `class="${high} ${wide} ${open}"`;
+        let wallToggleClick = `onclick="toggleWall(${r},${c}) ;updateView()"`;       
+        let clickable = ((high==='low' && wide==='wide')||(high==='high' && wide==='small'))?
+        wallToggleClick:'';
+        let html = `<td ${square} ${clickable}></td>`;
+        return html;
+
+        }
+
+        function drawTable() {
+        const table = mazeModel.rows;
+        html = ``;
+        for(let r = 0; r < table.length; r++){
+            
+            html += '<tr>';
+            for(let c = 0; c < table[r].length; c++){
+        // console.log(c)
+                html += drawSquare(r, c)
+                if (c == table[r].length-1) html += '</tr>';
+        }
+        }
+        return html;
+        }
+
+        function updateModel() {
+        const size=mazeModel.size;
+
+        }
+
+    </script>
+</body>
+</html>
